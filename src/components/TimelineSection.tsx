@@ -3,7 +3,6 @@ import {
   Calendar,
   MapPin,
   Construction,
-  ShieldCheck,
   ArrowRight,
   Bus,
   CheckCircle2,
@@ -30,10 +29,11 @@ interface TimelineStop {
 // Bus starts at X = 200 (Depot / Departure Bay) BEFORE Stop 1 (X = 850)
 const TIMELINE_STOPS = timelineData as TimelineStop[];
 
-// Road dimensions: Expanded to 5400px with bus starting at X = 200 before Stop 1 (X = 850)
-const TOTAL_ROAD_WIDTH = 5400;
+// Road dimensions: Expanded to 6000px with bus starting at X = 200 before Stop 1 (X = 850)
+const TOTAL_ROAD_WIDTH = 6000;
 const BUS_START_X = 200;
 const STOP_4_X = 3850; // Strict maximum for the bus!
+const STOP_5_X = 4750; // Milestone 5 horizon focus coordinate
 
 export const TimelineSection: React.FC = () => {
   const outerWrapperRef = useRef<HTMLDivElement>(null);
@@ -74,10 +74,6 @@ export const TimelineSection: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate track horizontal translation
-  const maxTranslate = Math.max(0, TOTAL_ROAD_WIDTH - viewportWidth + 120);
-  const currentTranslateX = scrollProgress * maxTranslate;
-
   // Calculate Bus X position along the road:
   // Starts at X = 200 (Depot) BEFORE Stop 1 (X = 850).
   // From scrollProgress 0.0 to 0.80, bus travels from Depot (X=200) to Stop 4 (X=3850).
@@ -86,11 +82,44 @@ export const TimelineSection: React.FC = () => {
   const busNormalized = Math.min(1, scrollProgress / BUS_TRAVEL_CUTOFF);
   const currentBusX = BUS_START_X + busNormalized * (STOP_4_X - BUS_START_X);
 
+  // Camera Focus coordinate along the track:
+  // - From scrollProgress 0.0 to 0.80, camera tracks the moving bus continuously.
+  // - From scrollProgress 0.80 to 1.00, the bus remains parked at Stop 4, while the camera focus pans
+  //   ahead past the roadblock barrier to directly center on Milestone 5 (X = 4750).
+  const currentFocusX =
+    scrollProgress <= BUS_TRAVEL_CUTOFF
+      ? currentBusX
+      : STOP_4_X +
+        ((scrollProgress - BUS_TRAVEL_CUTOFF) / (1 - BUS_TRAVEL_CUTOFF)) *
+          (STOP_5_X - STOP_4_X);
+
+  // Dynamic Camera Framing:
+  // - On mobile (< 768px, specifically 400px), bus and Milestone 5 are kept centered in the viewport.
+  // - On larger screens, the bus stays comfortably at ~45% (capped at 500px), and Milestone 5 settles near center (capped at 700px).
+  const targetBusScreenX =
+    viewportWidth < 768
+      ? viewportWidth * 0.5
+      : Math.min(viewportWidth * 0.45, 500);
+
+  const targetStop5ScreenX =
+    viewportWidth < 768
+      ? viewportWidth * 0.5
+      : Math.min(viewportWidth * 0.5, 700);
+
+  const currentTranslateX =
+    scrollProgress <= BUS_TRAVEL_CUTOFF
+      ? Math.max(0, currentBusX - targetBusScreenX)
+      : Math.max(0, STOP_4_X - targetBusScreenX) +
+        ((scrollProgress - BUS_TRAVEL_CUTOFF) / (1 - BUS_TRAVEL_CUTOFF)) *
+          (Math.max(0, STOP_5_X - targetStop5ScreenX) -
+            Math.max(0, STOP_4_X - targetBusScreenX));
+
   // Wheel rotation angle based on travel distance
   const wheelRotation = (currentBusX * 2.8) % 360;
 
-  // Active stop calculation
-  const isBusAtStop4 = busNormalized >= 0.98;
+  // Active stop calculations
+  const isFocusAtStop5 = scrollProgress >= 0.92;
+  const isBusAtStop4 = busNormalized >= 0.98 && !isFocusAtStop5;
 
   return (
     <section
@@ -119,25 +148,31 @@ export const TimelineSection: React.FC = () => {
               <div className="flex items-center gap-2 bg-white dark:bg-blackbrown px-3.5 py-1.5 rounded-md shadow-xs border border-slate-200 dark:border-zinc-800 text-xs font-mono">
                 <span
                   className={`w-2.5 h-2.5 rounded-full ${
-                    isBusAtStop4
-                      ? "bg-amber-500 animate-ping"
-                      : "bg-inferno animate-pulse"
+                    isFocusAtStop5
+                      ? "bg-emerald-500 animate-pulse"
+                      : isBusAtStop4
+                        ? "bg-amber-500 animate-ping"
+                        : "bg-inferno animate-pulse"
                   }`}
                 />
                 <span className="text-slate-600 dark:text-zinc-300 font-bold">
-                  {isBusAtStop4
-                    ? "TERMINUS: STOP 04 (4/5 CS)"
-                    : currentBusX < 850
-                      ? "DEPARTING CENTRAL DEPOT"
-                      : `BUS JC-01: ${Math.round(busNormalized * 100)}%`}
+                  {isFocusAtStop5
+                    ? "HORIZON: STOP 05 (NEXT DESTINATION)"
+                    : isBusAtStop4
+                      ? "TERMINUS: STOP 04 (4/5 CS)"
+                      : currentBusX < 850
+                        ? "DEPARTING CENTRAL DEPOT"
+                        : `BUS JC-01: ${Math.round(busNormalized * 100)}%`}
                 </span>
                 <span className="text-slate-300 dark:text-zinc-600">|</span>
                 <span className="text-cherry font-semibold">
-                  {isBusAtStop4
-                    ? "Hold Position • Limit Reached"
-                    : currentBusX < 850
-                      ? "Approaching Stop 01"
-                      : "En Route to Station 4"}
+                  {isFocusAtStop5
+                    ? "Future Horizons • Degree Completion Ahead"
+                    : isBusAtStop4
+                      ? "Bus Parked at 4/5 CS • Panning to Horizon"
+                      : currentBusX < 850
+                        ? "Approaching Stop 01"
+                        : "En Route to Station 4"}
                 </span>
               </div>
 
@@ -162,7 +197,7 @@ export const TimelineSection: React.FC = () => {
           >
             {/* Background City Skyline Silhouettes */}
             <div className="absolute -top-12 left-0 right-0 h-24 flex items-end opacity-15 dark:opacity-25 pointer-events-none overflow-hidden">
-              {[...Array(60)].map((_, i) => (
+              {[...Array(90)].map((_, i) => (
                 <div
                   key={i}
                   className="bg-slate-700 dark:bg-cherry mx-1 shrink-0 rounded-t-xs"
@@ -206,21 +241,23 @@ export const TimelineSection: React.FC = () => {
                 const isStep5 = index === 4;
                 const isStep4 = index === 3;
 
-                // Has the bus reached or passed this stop?
-                const isReached = currentBusX >= stop.xPosition - 30;
+                // Has the bus or camera focus reached this stop?
+                const isReached = currentFocusX >= stop.xPosition - 30;
 
                 return (
                   <div
                     key={stop.id}
-                    className="absolute -top-12 w-80 sm:w-90 md:w-97.5 transition-all duration-300 -translate-x-1/2"
+                    className="absolute -top-12 w-80 sm:w-90 md:w-97.5 max-w-[calc(100vw-2.5rem)] transition-all duration-300 -translate-x-1/2"
                     style={{ left: `${stop.xPosition}px` }}
                   >
                     {/* Milestone Card */}
                     <div
                       className={`rounded-md shadow-md border bg-white dark:bg-blackbrown border-inferno dark:border-cherry p-5 md:p-6 transition-all duration-300 ${
-                        isReached
-                          ? "border-slate-300 dark:border-zinc-700 hover:border-inferno/50 dark:hover:border-cherry/60"
-                          : "border-slate-200 dark:border-zinc-800 opacity-80"
+                        isStep5 && isFocusAtStop5
+                          ? "border-inferno dark:border-cherry ring-2 ring-inferno/20 dark:ring-cherry/30 shadow-xl opacity-100 scale-[1.01]"
+                          : isReached
+                            ? "border-slate-300 dark:border-zinc-700 hover:border-inferno/50 dark:hover:border-cherry/60"
+                            : "border-slate-200 dark:border-zinc-800 opacity-80"
                       }`}
                     >
                       {/* Card Meta */}
@@ -230,7 +267,9 @@ export const TimelineSection: React.FC = () => {
                             isStep4
                               ? "default"
                               : isStep5
-                                ? "outline"
+                                ? isFocusAtStop5
+                                  ? "default"
+                                  : "outline"
                                 : isReached
                                   ? "accent"
                                   : "secondary"
@@ -251,7 +290,9 @@ export const TimelineSection: React.FC = () => {
                           isStep4
                             ? "text-inferno dark:text-lighttext"
                             : isStep5
-                              ? "text-slate-600 dark:text-zinc-400"
+                              ? isFocusAtStop5
+                                ? "text-inferno dark:text-cherry font-extrabold"
+                                : "text-slate-600 dark:text-zinc-400"
                               : "text-blackbrown dark:text-lighttext"
                         }`}
                       >
@@ -275,7 +316,7 @@ export const TimelineSection: React.FC = () => {
                           <span
                             key={h}
                             className={`text-[10px] font-medium font-heading px-2 py-0.5 rounded-sm ${
-                              isStep5
+                              isStep5 && !isFocusAtStop5
                                 ? "bg-slate-200/70 dark:bg-zinc-800/60 text-slate-600 dark:text-zinc-400"
                                 : "bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300"
                             }`}
@@ -292,7 +333,9 @@ export const TimelineSection: React.FC = () => {
                       <div
                         className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-heading shadow-xs border-2 ${
                           isStep5
-                            ? "bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border-amber-400"
+                            ? isFocusAtStop5
+                              ? "bg-inferno dark:bg-cherry text-white border-inferno dark:border-cherry"
+                              : "bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border-amber-400"
                             : isReached
                               ? "bg-white dark:bg-blackbrown text-inferno dark:text-cherry border-inferno dark:border-cherry"
                               : "bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 border-slate-300 dark:border-zinc-700"
@@ -324,7 +367,7 @@ export const TimelineSection: React.FC = () => {
 
               {/* Dashed Center Yellow Line across the extended road */}
               <div className="w-full flex items-center gap-6 overflow-hidden px-4">
-                {[...Array(140)].map((_, i) => (
+                {[...Array(160)].map((_, i) => (
                   <div
                     key={i}
                     className="h-1.5 w-12 bg-amber-400 rounded-full shrink-0"
@@ -340,32 +383,6 @@ export const TimelineSection: React.FC = () => {
                 DEPOT 00 • START
               </div>
 
-              {/* Distance Markers along the extended highway */}
-              <div
-                className="absolute top-2 -translate-x-1/2 text-[8px] font-mono text-slate-400"
-                style={{ left: "500px" }}
-              >
-                KM 0.5 →
-              </div>
-              <div
-                className="absolute top-2 -translate-x-1/2 text-[8px] font-mono text-slate-400"
-                style={{ left: "1350px" }}
-              >
-                KM 1.5 →
-              </div>
-              <div
-                className="absolute top-2 -translate-x-1/2 text-[8px] font-mono text-slate-400"
-                style={{ left: "2350px" }}
-              >
-                KM 2.5 →
-              </div>
-              <div
-                className="absolute top-2 -translate-x-1/2 text-[8px] font-mono text-slate-400"
-                style={{ left: "3350px" }}
-              >
-                KM 3.5 →
-              </div>
-
               {/* Station Stop Platform Labels on Road */}
               {TIMELINE_STOPS.map((stop) => (
                 <div
@@ -374,7 +391,9 @@ export const TimelineSection: React.FC = () => {
                     stop.id === "stop-4"
                       ? "bg-inferno text-white"
                       : stop.id === "stop-5"
-                        ? "bg-amber-500 text-blackbrown"
+                        ? isFocusAtStop5
+                          ? "bg-inferno text-white"
+                          : "bg-amber-500 text-blackbrown"
                         : "bg-slate-800 text-white"
                   }`}
                   style={{
@@ -384,7 +403,9 @@ export const TimelineSection: React.FC = () => {
                   {stop.id === "stop-4"
                     ? "TERMINUS 04"
                     : stop.id === "stop-5"
-                      ? "ROAD CLOSED"
+                      ? isFocusAtStop5
+                        ? "HORIZON 05"
+                        : "FUTURE HORIZON 05"
                       : `PLATFORM ${stop.stopNumber}`}
                 </div>
               ))}
@@ -640,7 +661,7 @@ export const TimelineSection: React.FC = () => {
 
                     {/* Forward Headlight Beam on Road */}
                     {theme === "dark" && (
-                      <div className="absolute rotate-1 top-[48%] left-[95%] w-24 h-5 pointer-events-none opacity-45 bg-gradient-to-r from-amber-300 via-amber-200/20 to-transparent clip-path-beam" />
+                      <div className="absolute rotate-1 top-[48%] left-[95%] w-24 h-5 pointer-events-none opacity-45 bg-linear-to-r from-amber-300 via-amber-200/20 to-transparent clip-path-beam" />
                     )}
                   </div>
                 </div>
@@ -650,7 +671,7 @@ export const TimelineSection: React.FC = () => {
         </div>
 
         {/* Bottom Station Progress Indicator & Legend */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-30 pt-3 border-t border-slate-200 dark:border-zinc-800">
+        <div className="hidden lg:block w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-30 pt-3 border-t border-slate-200 dark:border-zinc-800">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-heading">
             {/* Route Breadcrumb Stations */}
             <div className="flex items-center gap-2 overflow-x-auto py-1 max-w-full">
@@ -672,7 +693,7 @@ export const TimelineSection: React.FC = () => {
               </div>
 
               {TIMELINE_STOPS.map((stop, i) => {
-                const isPassed = currentBusX >= stop.xPosition - 30;
+                const isPassed = currentFocusX >= stop.xPosition - 30;
                 const isStep4 = i === 3;
                 const isStep5 = i === 4;
 
@@ -683,19 +704,25 @@ export const TimelineSection: React.FC = () => {
                   >
                     <div
                       className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold border ${
-                        isStep4 && isBusAtStop4
+                        isStep5 && isFocusAtStop5
                           ? "bg-inferno text-white shadow-xs"
-                          : isStep5
-                            ? "bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 border-dashed border-slate-300 dark:border-zinc-700"
-                            : isPassed
-                              ? "bg-inferno/10 dark:bg-cherry/20 text-inferno dark:text-cherry border-inferno/30 dark:border-cherry/40"
-                              : "bg-white dark:bg-blackbrown text-slate-400 dark:text-zinc-500 border-slate-200 dark:border-zinc-800"
+                          : isStep4 && isBusAtStop4
+                            ? "bg-inferno text-white shadow-xs"
+                            : isStep5
+                              ? "bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 border-dashed border-slate-300 dark:border-zinc-700"
+                              : isPassed
+                                ? "bg-inferno/10 dark:bg-cherry/20 text-inferno dark:text-cherry border-inferno/30 dark:border-cherry/40"
+                                : "bg-white dark:bg-blackbrown text-slate-400 dark:text-zinc-500 border-slate-200 dark:border-zinc-800"
                       }`}
                     >
                       {isPassed && !isStep5 ? (
                         <CheckCircle2 className="w-3 h-3 text-inferno dark:text-cherry" />
                       ) : isStep5 ? (
-                        <Construction className="w-3 h-3 text-amber-500" />
+                        isFocusAtStop5 ? (
+                          <Flag className="w-3 h-3 text-white" />
+                        ) : (
+                          <Construction className="w-3 h-3 text-amber-500" />
+                        )
                       ) : (
                         <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-zinc-600" />
                       )}
@@ -715,11 +742,13 @@ export const TimelineSection: React.FC = () => {
             <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 shrink-0">
               <Bus className="w-4 h-4 text-inferno dark:text-cherry" />
               <span className="text-[11px]">
-                {isBusAtStop4
-                  ? "Bus halted at 4/5 CS station. Keep scrolling to continue to footer."
-                  : currentBusX < 850
-                    ? "Bus departed Central Depot, driving toward Stop 01."
-                    : "Bus driving along route. Keep scrolling down."}
+                {isFocusAtStop5
+                  ? "Arrived at Milestone 05 horizon. Keep scrolling to continue to footer."
+                  : isBusAtStop4
+                    ? "Bus halted at 4/5 CS station. Viewing upcoming destination."
+                    : currentBusX < 850
+                      ? "Bus departed Central Depot, driving toward Stop 01."
+                      : "Bus driving along route. Keep scrolling down."}
               </span>
             </div>
           </div>

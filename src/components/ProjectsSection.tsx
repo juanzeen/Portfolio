@@ -56,7 +56,7 @@ export const ProjectsSection: React.FC = () => {
                 } rounded-md shadow-md border-2 border-slate-200 dark:border-blackbrown bg-white dark:bg-blackbrown overflow-hidden group hover:border-inferno/50 dark:hover:border-cherry/60 hover:shadow-xl transition-all duration-300`}
               >
                 {/* Image Side (takes ~45-50% width) */}
-                <div className="md:w-5/12 lg:w-1/2 relative overflow-hidden bg-slate-900 min-h-60 md:min-h-85">
+                <div className="md:w-5/12 lg:w-1/2 relative overflow-hidden bg-slate-900 min-h-55 md:min-h-85">
                   <img
                     src={project.thumbnail}
                     alt={project.title}
