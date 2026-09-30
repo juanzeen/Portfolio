@@ -1,75 +1,73 @@
-# React + TypeScript + Vite
+# Juan Cristo — Personal Portfolio & Urban Transit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+</div>
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🏙️ The Core Idea: Building My Own City
 
-## Expanding the ESLint configuration
+Rather than building a standard static portfolio, this project was conceived as an interactive urban municipality — **Juan Cristo's City**. Every section is a dedicated municipal district designed to provide an engaging, cohesive experience:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Central Station (Hero):** The main terminal welcoming visitors into the city with live transit arrival feedback and personal background.
+- **Projects District:** The commercial sector showcasing deployed full-stack products, architectures, and active repositories side by side.
+- **Stack Park:** An urban tech reserve categorizing programming languages, frameworks, databases, and DevOps tools.
+- **The Journey Bus (Transit Route):** A scroll-driven expressway where a municipal transit bus drives across historical stations (education, early development, university career at UENF) before halting at Terminus 04 and panning to the upcoming City Horizon (Milestone 05).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ⚡ Tech Stack & Decisions
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **[Bun](https://bun.sh):** The spotlight of this stack. While the industry constantly chases frontend hype cycles, Bun acts as the practical engine behind the scenes — serving as a blazing-fast runtime, package manager, and test runner. It eliminates legacy Node.js overhead, installs dependencies in milliseconds, and executes scripts instantly.
+- **React 19 & TypeScript:** Provides type-safe component architecture, modern hook state synchronization, and reactive UI transitions.
+- **Tailwind CSS v4:** Modern zero-config utility-first styling with native CSS variable themes (Day Mode and Night Mode).
+- **Vite:** Ultra-fast HMR and bundle optimization powering the client build.
+- **Lucide Icons:** Clean municipal-style iconography across all districts and transit indicators.
 
+---
+
+## 🚀 Getting Started
+
+Ensure you have [Bun](https://bun.sh) installed on your machine.
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/juancristo/JuanCristoPortfolio.git
+
+# Enter project directory
+cd JuanCristoPortfolio
+
+# Install dependencies with Bun
+bun install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+bun run dev
 ```
+
+### Production Build & Verification
+
+```bash
+# Type check and build client bundle
+bun run build
+
+# Run linter
+bun run lint
+```
+
+---
+
+## 📜 License
+
+Created with passion by [Juan Cristo](https://github.com/juancristo). Distributed under the MIT License.
