@@ -30,7 +30,7 @@
     "description": "Official website for Eventos UENF, created to centralize all university events inside UENF.",
     "thumbnail": "/assets/p3.png",
     "tags": ["WordPress", "Gutenberg", "PHP", "MariaDB", "Google Sheets Automation", "Custom Integration Handlers"],
-    "liveUrl": "https://radio.uenf.br",
+    "liveUrl": "https://eventos.uenf.br",
     "status": "Operational"
   },
   {
@@ -52,7 +52,7 @@
     "description": "Line up creator for soccer enthusiasts, with share to social media options, multi-language support and offline-first mentality.",
     "thumbnail": "/assets/p5.png",
     "tags": ["TypeScript", "React Native", "Mobile", "Multiplatform", "i18n"],
-    "githubUrl": "https://github.com/juanzeen/magical-lineup",
+    "githubUrl": "https://github.com/juanzeen/MagicalLineup",
     "status": "Research Lab"
   }
 ]
