@@ -1,0 +1,94 @@
+[
+  {
+    "id": "stop-1",
+    "stopNumber": "01",
+    "title": "Initial Departure: I.T Technician",
+    "category": "Education",
+    "period": "2020 — 2023",
+    "location": "IFF Quissamã",
+    "description": "Boarded the I.T journey. Discovered logic programming, script automation, and the excitement of building web pages from scratch.",
+    "highlights": [
+      "HTML & CSS",
+      "JavaScript Basics",
+      "Express",
+      "Problem Solving",
+      "Logic"
+    ],
+    "status": "Completed",
+    "xPosition": 850
+  },
+  {
+    "id": "stop-2",
+    "stopNumber": "02",
+    "title": "University Station: Computer Science",
+    "category": "Education",
+    "period": "2023",
+    "location": "State University of Northern Rio de Janeiro - UENF",
+    "description": "Arrived at the Computer Science campus. Immersed in data structures, algorithms, discrete mathematics, and software design principles.",
+    "highlights": [
+      "Data Structures",
+      "Algorithms",
+      "OOP",
+      "Graphs Theory",
+      "Database Systems",
+      "C",
+      "Git Workflows"
+    ],
+    "status": "Completed",
+    "xPosition": 1850
+  },
+  {
+    "id": "stop-3",
+    "stopNumber": "03",
+    "title": "First Developer Role",
+    "category": "Voluntary Job",
+    "period": "2023",
+    "location": "Pescarte & SoulCode Jr.",
+    "description": "Stepped into real-world software engineering as a volunteer. Collaborated with engineering teams to build, test, and ship production web applications and resilient API endpoints.",
+    "highlights": [
+      "Full-Stack Development",
+      "Elixir & Phoenix",
+      "React & TypeScript",
+      "RESTful",
+      "GitHub Actions",
+      "Docker"
+    ],
+    "status": "Completed",
+    "xPosition": 2850
+  },
+  {
+    "id": "stop-4",
+    "stopNumber": "04",
+    "title": "Extension Fellow Developer",
+    "category": "Current Phase",
+    "period": "2024 — Present",
+    "location": "ASCOM - UENF",
+    "description": "4/5 Computer Scientist. I currently maintain institutional websites, such as radio.uenf.br and eventos.uenf.br, and also develop internal solutions, such as the ASCOM request system.",
+    "highlights": [
+      "PHP & WordPress",
+      "Python",
+      "FastAPI & Django",
+      "Distributed Systems",
+      "System Architecture"
+    ],
+    "status": "Current Stop",
+    "xPosition": 3850
+  },
+  {
+    "id": "stop-5",
+    "stopNumber": "05",
+    "title": "Next Destination",
+    "category": "Education & Work",
+    "period": "Upcoming",
+    "location": "Future City Horizons",
+    "description": "The next terminal along the route. Completing final degree requirements, driving complex software initiatives, and engineering large-scale digital products with long-lasting impact.",
+    "highlights": [
+      "Degree Completion",
+      "High-Impact Engineering",
+      "Innovation",
+      "Life-Changing Software"
+    ],
+    "status": "Upcoming",
+    "xPosition": 4750
+  }
+]

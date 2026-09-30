@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-inferno: #800E13;
+  --color-inferno-dark: #59090D;
+  --color-cherry: #C52233;
+  --color-cherry-hover: #A01B29;
+  --color-offwhite: #F8FAFC;
+  --color-blackbrown: #0F0606;
+  --color-darkslate: #334155;
+  --color-lighttext: #F7F4F3;
+
+  --animate-road-move: roadMove 1s linear infinite;
+
+  @keyframes roadMove {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}

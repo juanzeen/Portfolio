@@ -1,0 +1,58 @@
+[
+  {
+    "id": "proj-1",
+    "title": "NBA FANtastic",
+    "district": "Data & Sports District",
+    "stationCode": "STATION 01",
+    "description": "API providing selected NBA data on historical players, records, and active players. Currently implementing a prediction system.",
+    "thumbnail": "/assets/p1.png",
+    "tags": ["Python", "FastAPI", "Pandas", "MongoDB", "Redis", "REST", "Docker", "CI/CD"],
+    "githubUrl": "https://github.com/juanzeen/Nba-FANtastic-API",
+    "liveUrl": "https://nba-fantastic-api.onrender.com/docs",
+    "status": "Active Route"
+  },
+  {
+    "id": "proj-2",
+    "title": "Radio UENF",
+    "district": "Music District",
+    "stationCode": "STATION 02",
+    "description": "Official website for Radio UENF, an extension and institutional from UENF",
+    "thumbnail": "/assets/p2.png",
+    "tags": ["WordPress", "Elementor", "PHP", "MariaDB"],
+    "liveUrl": "https://radio.uenf.br",
+    "status": "Operational"
+  },
+  {
+    "id": "proj-3",
+    "title": "Eventos UENF",
+    "district": "Party Park",
+    "stationCode": "STATION 03",
+    "description": "Official website for Eventos UENF, created to centralize all university events inside UENF.",
+    "thumbnail": "/assets/p3.png",
+    "tags": ["WordPress", "Gutenberg", "PHP", "MariaDB", "Google Sheets Automation", "Custom Integration Handlers"],
+    "liveUrl": "https://radio.uenf.br",
+    "status": "Operational"
+  },
+  {
+    "id": "proj-4",
+    "title": "Cheap Tracker",
+    "district": "Transport & Logistic Sector",
+    "stationCode": "STATION 04",
+    "description": "Logistics and route optimization system whose primary objective is to find the most cost-effective and shortest path for a delivery route with multiple destinations.",
+    "thumbnail": "/assets/p4.png",
+    "tags": ["Graph Algorithms", "Python", "Django", "PostgreSQL", "Docker", "HTML & CSS", "CI"],
+    "githubUrl": "https://github.com/juanzeen/CheapTracker",
+    "status": "Deploys Daily"
+  },
+  {
+    "id": "proj-5",
+    "title": "Magical Lineup",
+    "district": "Sports Managing Neighborhood",
+    "stationCode": "STATION 05",
+    "description": "Line up creator for soccer enthusiasts, with share to social media options, multi-language support and offline-first mentality.",
+    "thumbnail": "/assets/p5.png",
+    "tags": ["TypeScript", "React Native", "Mobile", "Multiplatform", "i18n"],
+    "githubUrl": "https://github.com/juanzeen/magical-lineup",
+    "status": "Research Lab"
+  }
+]

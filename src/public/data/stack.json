@@ -1,0 +1,110 @@
+[
+  {
+    "name": "React",
+    "category": "frontend",
+    "level": "Advanced",
+    "tags": ["UI", "Hooks", "SPA"]
+  },
+  {
+    "name": "TypeScript",
+    "category": "frontend",
+    "level": "Advanced",
+    "tags": ["Type Safety", "Generics", "Interfaces"]
+  },
+  {
+    "name": "Tailwind CSS",
+    "category": "frontend",
+    "level": "Advanced",
+    "tags": ["Styling", "Design Systems"]
+  },
+  {
+    "name": "Next.js",
+    "category": "frontend",
+    "level": "Proficient",
+    "tags": ["SSR", "Full-Stack", "Routing"]
+  },
+  {
+    "name": "HTML & CSS",
+    "category": "frontend",
+    "level": "Advanced",
+    "tags": ["Semantics", "Accessibility", "Styling"]
+  },
+  {
+    "name": "WordPress",
+    "category": "frontend",
+    "level": "Advanced",
+    "tags": ["CMS", "SEO", "Multisites"]
+  },
+  {
+    "name": "Node.js",
+    "category": "backend",
+    "level": "Advanced",
+    "tags": ["Express", "Nest.js","APIs", "REST", "tRPC"]
+  },
+  {
+    "name": "Python",
+    "category": "backend",
+    "level": "Proficient",
+    "tags": ["FastAPI", "Django", "Automation", "Data", "ETL", "REST"]
+  },
+  {
+    "name": "Elixir",
+    "category": "backend",
+    "level": "Proficient",
+    "tags": ["WebSockets", "OTP", "BEAM"]
+  },
+  {
+    "name": "PHP",
+    "category": "backend",
+    "level": "Proficient",
+    "tags": ["WordPress", "Data Entry"]
+  },
+  {
+    "name": "PostgreSQL",
+    "category": "database",
+    "level": "Advanced",
+    "tags": ["Relational", "ACID", "SQL", "Indexing", "Supabase"]
+  },
+  {
+    "name": "MongoDB",
+    "category": "database",
+    "level": "Advanced",
+    "tags": ["Non Relational", "JSON", "Schema Patterns","Indexing"]
+  },
+  {
+    "name": "Redis",
+    "category": "database",
+    "level": "Proficient",
+    "tags": ["In-Memory", "Caching", "Pub/Sub"]
+  },
+  {
+    "name": "Data Structures & Algorithms",
+    "category": "infra and ops",
+    "level": "Academic",
+    "tags": ["Complexity", "Optimization"]
+  },
+  {
+    "name": "Git & GitHub",
+    "category": "infra and ops",
+    "level": "Advanced",
+    "tags": ["Actions", "Collaboration", "CI/CD"]
+  },
+  {
+    "name": "Docker & Containers",
+    "category": "infra and ops",
+    "level": "Proficient",
+    "tags": ["Containers", "DevOps", "Isolation"]
+  },
+  {
+    "name": "GCP",
+    "category": "infra and ops",
+    "level": "Proficient",
+    "tags": ["Cloud Storage", "Buckets", "Deploy", "Cloud Run"]
+  },
+  {
+    "name": "Linux & Bash",
+    "category": "infra and ops",
+    "level": "Proficient",
+    "tags": ["CLI", "SSH"]
+  }
+]
