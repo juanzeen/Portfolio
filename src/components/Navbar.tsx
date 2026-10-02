@@ -55,7 +55,7 @@ export const Navbar: React.FC = () => {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md bg-transparent text-slate-700 dark:text-cherry transition-colors shadow-xs cursor-pointer flex items-center gap-1.5 text-xs font-heading"
+              className="p-2 rounded-md bg-transparent text-slate-700 dark:text-cherry transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-heading"
               title={
                 theme === "dark"
                   ? "Switch to Day Mode (Off-white)"

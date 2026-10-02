@@ -83,10 +83,12 @@ export const ProjectsSection: React.FC = () => {
                       <span className="font-mono text-xs font-bold text-inferno dark:text-cherry bg-inferno/10 dark:bg-cherry/20 px-2 py-0.5 rounded-sm">
                         {project.stationCode}
                       </span>
-                      <span className="text-[11px] text-slate-400 dark:text-zinc-500 font-heading font-medium flex items-center gap-1">
-                        <Terminal className="w-3 h-3 text-cherry" />
-                        Production Ready
-                      </span>
+                      {project.liveUrl && (
+                        <span className="text-[11px] text-slate-400 dark:text-zinc-500 font-heading font-medium flex items-center gap-1">
+                          <Terminal className="w-3 h-3 text-cherry" />
+                          Production Ready
+                        </span>
+                      )}
                     </div>
 
                     {/* Title */}

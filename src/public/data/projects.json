@@ -20,7 +20,7 @@
     "thumbnail": "/assets/p2.png",
     "tags": ["WordPress", "Elementor", "PHP", "MariaDB"],
     "liveUrl": "https://radio.uenf.br",
-    "status": "Operational"
+    "status": "Deploys Daily"
   },
   {
     "id": "proj-3",
@@ -31,7 +31,7 @@
     "thumbnail": "/assets/p3.png",
     "tags": ["WordPress", "Gutenberg", "PHP", "MariaDB", "Google Sheets Automation", "Custom Integration Handlers"],
     "liveUrl": "https://eventos.uenf.br",
-    "status": "Operational"
+    "status": "Deploys Daily"
   },
   {
     "id": "proj-4",
@@ -42,7 +42,7 @@
     "thumbnail": "/assets/p4.png",
     "tags": ["Graph Algorithms", "Python", "Django", "PostgreSQL", "Docker", "HTML & CSS", "CI"],
     "githubUrl": "https://github.com/juanzeen/CheapTracker",
-    "status": "Deploys Daily"
+    "status": "Research Lab"
   },
   {
     "id": "proj-5",

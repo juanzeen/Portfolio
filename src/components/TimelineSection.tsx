@@ -247,7 +247,7 @@ export const TimelineSection: React.FC = () => {
                 return (
                   <div
                     key={stop.id}
-                    className="absolute -top-12 w-80 sm:w-90 md:w-97.5 max-w-[calc(100vw-2.5rem)] transition-all duration-300 -translate-x-1/2"
+                    className="absolute -top-24 md:-top-14 w-80 sm:w-90 md:w-97.5 max-w-[calc(100vw-2.5rem)] transition-all duration-300 -translate-x-1/2"
                     style={{ left: `${stop.xPosition}px` }}
                   >
                     {/* Milestone Card */}
