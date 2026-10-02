@@ -1,7 +1,10 @@
 import React from "react";
-import {ArrowUp, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { ArrowUp, Mail } from "lucide-react";
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -14,20 +17,18 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:col-span-6 space-y-3">
             <img
               src="/assets/favicon.svg"
-              alt="Juan Cristo Logo"
+              alt={t("footer.logoAlt")}
               className="w-30 h-30"
             />
-            <p className="text-sm text-slate-400 max-w-md font-body leading-relaxed">
-              Designed as a personal city system where software modules
-              interconnect like transit networks, avenues, and sustainable urban
-              districts.
+            <p className="text-sm text-slate-400 max-w-md font-body leading-relaxed text-center md:text-left">
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Center Links */}
           <div className="md:col-span-4 space-y-2 text-sm font-heading">
             <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400">
-              City Navigation
+              {t("footer.navigationTitle")}
             </h4>
             <ul className="space-y-1 text-slate-300">
               <li>
@@ -36,7 +37,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-cherry transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-inferno" />
-                  Central Terminal (Hero)
+                  {t("footer.navHero")}
                 </a>
               </li>
               <li>
@@ -45,7 +46,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-cherry transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-inferno" />
-                  Projects District
+                  {t("footer.navProjects")}
                 </a>
               </li>
               <li>
@@ -54,7 +55,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-cherry transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-inferno" />
-                  Stack Park
+                  {t("footer.navStack")}
                 </a>
               </li>
               <li>
@@ -63,7 +64,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-cherry transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-inferno" />
-                  Transit Route Map (Timeline)
+                  {t("footer.navTimeline")}
                 </a>
               </li>
             </ul>
@@ -107,7 +108,7 @@ export const Footer: React.FC = () => {
               onClick={scrollToTop}
               className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white bg-white/10 hover:bg-white/20 px-3 py-2 rounded-md transition-colors font-heading cursor-pointer"
             >
-              <span>Return to Top</span>
+              <span>{t("footer.returnToTop")}</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -115,9 +116,9 @@ export const Footer: React.FC = () => {
 
         {/* Bottom copyright line */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2 font-body">
-          <p>© {new Date().getFullYear()} Juan Cristo. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Juan Cristo. {t("footer.rights")}</p>
           <p className="flex items-center gap-1">
-            <span>Powered by Bun, React &amp; Tailwind CSS</span>
+            <span>{t("footer.poweredBy")}</span>
           </p>
         </div>
       </div>

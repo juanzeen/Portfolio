@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "title": "Juan Cristo | Portfólio"
+  },
+  "loader": {
+    "label": "Chegando na quebrada de Juan Cristo"
+  },
+  "nav": {
+    "centralStation": "Estação Central",
+    "projectsDistrict": "Distrito de Projetos",
+    "stackPark": "Parque Tecnológico",
+    "transitRouteMap": "Ônibus da Jornada",
+    "themeToggleDay": "Mudar para Modo Claro",
+    "themeToggleNight": "Mudar para Modo Noturno",
+    "themeToggleAria": "Alternar modo escuro",
+    "languageToggleAria": "Alterar idioma"
+  },
+  "hero": {
+    "stationTag": "Estação 01 • Terminal Central",
+    "speedLimit": "Zona 1 de Trânsito • Limite de Velocidade: 100 GFLOPS",
+    "residentCard": "CARTÃO DE RESIDENTE DE TRÂNSITO",
+    "cardId": "ID: JC-2005",
+    "avatarAlt": "Juan Cristo - Desenvolvedor de Software e Cientista da Computação",
+    "cityLocation": "JCity",
+    "name": "Juan Cristo",
+    "role": "Desenvolvedor de Software",
+    "bio": "Bem-vindo ao meu quarteirão! Assim como uma cidade bem planejada depende de linhas de transporte eficientes, malhas viárias estruturadas e infraestrutura resiliente, construo aplicações de software confiáveis, escaláveis e sistemas de alta performance.",
+    "statusLabel": "Status",
+    "statusValue": "Disponível",
+    "statusSubtext": "Pronto para embarque",
+    "btnProjects": "Distrito de Projetos",
+    "btnStack": "Parque de Tecnologias",
+    "btnTimeline": "Linha do Tempo"
+  },
+  "projects": {
+    "stationTag": "Estação 02 • Área Criativa",
+    "title": "Distrito de Projetos",
+    "subtitle": "Explore alguns dos meus projetos mais recentes e descubra onde concentro meus esforços e habilidades. Cada projeto foi concebido como um bloco fundamental de uma cidade.",
+    "productionReady": "Pronto para Produção",
+    "techStack": "Stack Tecnológica",
+    "sourceCode": "Código Fonte",
+    "notOnGithub": "Projeto não registrado no GitHub",
+    "liveInspection": "Inspeção ao Vivo",
+    "internalSystem": "Núcleo de Sistema Interno",
+    "items": [
+      {
+        "id": "proj-1",
+        "title": "NBA FANtastic",
+        "district": "Distrito de Dados & Esportes",
+        "stationCode": "ESTAÇÃO 01",
+        "description": "API que fornece dados selecionados da NBA sobre jogadores históricos, recordes e jogadores em atividade. Atualmente implementando um sistema de predições.",
+        "status": "Rota Ativa"
+      },
+      {
+        "id": "proj-2",
+        "title": "Rádio UENF",
+        "district": "Distrito Musical",
+        "stationCode": "ESTAÇÃO 02",
+        "description": "Site oficial da Rádio UENF, um projeto de extensão institucional da UENF.",
+        "status": "Deploys Diários"
+      },
+      {
+        "id": "proj-3",
+        "title": "Eventos UENF",
+        "district": "Parque de Eventos",
+        "stationCode": "ESTAÇÃO 03",
+        "description": "Site oficial do Eventos UENF, desenvolvido para centralizar todos os eventos universitários dentro da UENF.",
+        "status": "Deploys Diários"
+      },
+      {
+        "id": "proj-4",
+        "title": "Cheap Tracker",
+        "district": "Setor de Transporte & Logística",
+        "stationCode": "ESTAÇÃO 04",
+        "description": "Sistema de logística e otimização de rotas cujo principal objetivo é encontrar o trajeto mais econômico e curto para rotas de entrega com múltiplos destinos.",
+        "status": "Laboratório de Pesquisa"
+      },
+      {
+        "id": "proj-5",
+        "title": "Magical Lineup",
+        "district": "Bairro de Gestão Esportiva",
+        "stationCode": "ESTAÇÃO 05",
+        "description": "Criador de escalações táticas para entusiastas de futebol, com compartilhamento em redes sociais, suporte a múltiplos idiomas e mentalidade offline-first.",
+        "status": "Laboratório de Pesquisa"
+      }
+    ]
+  },
+  "stack": {
+    "stationTag": "Estação 03 • Zona Verde",
+    "title": "Parque de Tecnologias",
+    "subtitle": "Entre no parque tecnológico aberto da cidade. Assim como árvores e jardins trazem ar fresco à paisagem urbana, estas linguagens de programação, frameworks e fundamentos são essenciais para as minhas criações de software.",
+    "zones": {
+      "frontend": "Parque do Frontend",
+      "backend": "Bosque do Backend",
+      "database": "Lago de Banco de Dados",
+      "infra": "Trilha de Infra & DevOps"
+    },
+    "levels": {
+      "Advanced": "Avançado",
+      "Proficient": "Proficiente",
+      "Academic": "Acadêmico"
+    }
+  },
+  "timeline": {
+    "stationTag": "Estação 04 • Via Expressa Estendida",
+    "title": "O Ônibus da Jornada",
+    "telemetry": {
+      "horizon": "HORIZONTE: PARADA 05 (PRÓXIMO DESTINO)",
+      "terminus": "TERMINAL: PARADA 04 (4/5 CC)",
+      "departing": "PARTINDO DA GARAGEM CENTRAL",
+      "busProgress": "ÔNIBUS JC-01: {{percent}}%",
+      "horizonSub": "Horizontes Futuros • Conclusão da Graduação à Frente",
+      "terminusSub": "Ônibus Estacionado em 4/5 CC • Mirando o Horizonte",
+      "departingSub": "Aproximando-se da Parada 01",
+      "enRouteSub": "A Caminho da Estação 04"
+    },
+    "scrollHint": "Role para baixo para dirigir o ônibus",
+    "depot": {
+      "title": "GARAGEM CENTRAL DE TRÂNSITO",
+      "bay": "Baia 00 • Ponto de Partida • Conceição de Macabu.",
+      "signal": "Sinal Verde • Despachado",
+      "tag": "GARAGEM 00 • INÍCIO",
+      "crumb": "Garagem 00 (Início)"
+    },
+    "roadClosed": "PISTA FECHADA",
+    "busPlate": "JC-01 • 4/5 CC",
+    "platformLabel": "PLATAFORMA {{number}}",
+    "platformTerminus": "TERMINAL 04",
+    "platformHorizon": "HORIZONTE 05",
+    "platformFutureHorizon": "FUTURO HORIZONTE 05",
+    "stopCrumb": "Parada {{number}}",
+    "bottomStatus": {
+      "horizon": "Chegou ao horizonte do Marco 05. Continue rolando para ir ao rodapé.",
+      "atStop4": "Ônibus estacionado na estação \"Fase Atual\". Visualizando próximo destino.",
+      "departing": "Ônibus partiu da Garagem Central, dirigindo em direção à Parada 01.",
+      "driving": "Ônibus em trânsito pela rota. Continue rolando para baixo."
+    },
+    "categories": {
+      "Education": "Educação",
+      "Job": "Trabalho",
+      "Voluntary Job": "Trabalho Voluntário",
+      "Life Milestone": "Marco de Vida",
+      "Current Phase": "Fase Atual",
+      "Education & Work": "Educação & Trabalho"
+    },
+    "stops": [
+      {
+        "id": "stop-1",
+        "title": "Partida Inicial: Técnico em Informática",
+        "period": "2020 — 2023",
+        "location": "IFF Quissamã",
+        "description": "Embarquei na jornada da T.I. Descobri a lógica de programação, automação de scripts e a empolgação de criar páginas web a partir do zero.",
+        "highlights": [
+          "HTML & CSS",
+          "Fundamentos de JavaScript",
+          "Express",
+          "Resolução de Problemas",
+          "Lógica"
+        ]
+      },
+      {
+        "id": "stop-2",
+        "title": "Estação Universitária: Ciência da Computação",
+        "period": "2023",
+        "location": "Universidade Estadual do Norte Fluminense - UENF",
+        "description": "Chegada a graduação de Ciência da Computação. Imersão em estruturas de dados, algoritmos, matemática discreta e princípios de arquitetura de software.",
+        "highlights": [
+          "Estruturas de Dados",
+          "Algoritmos",
+          "POO",
+          "Teoria dos Grafos",
+          "Sistemas de Banco de Dados",
+          "C",
+          "Fluxos de Git"
+        ]
+      },
+      {
+        "id": "stop-3",
+        "title": "Primeira Atuação como Desenvolvedor",
+        "period": "2023",
+        "location": "Pescarte & SoulCode Jr.",
+        "description": "Ingresso na engenharia de software no mundo real como voluntário. Colaboração com equipes para construir, testar e publicar aplicações web e endpoints de APIs resilientes.",
+        "highlights": [
+          "Desenvolvimento Full-Stack",
+          "Elixir & Phoenix",
+          "React & TypeScript",
+          "RESTful",
+          "GitHub Actions",
+          "Docker"
+        ]
+      },
+      {
+        "id": "stop-4",
+        "title": "Desenvolvedor Bolsista de Extensão",
+        "period": "2024 — Presente",
+        "location": "ASCOM - UENF",
+        "description": "4/5 Cientista da Computação. Atualmente mantenho sites institucionais (radio.uenf.br, eventos.uenf.br), além de desenvolver soluções internas, como o sistema de solicitações.",
+        "highlights": [
+          "PHP & WordPress",
+          "Python",
+          "FastAPI & Django",
+          "Sistemas Distribuídos",
+          "Arquitetura de Sistemas"
+        ]
+      },
+      {
+        "id": "stop-5",
+        "title": "Próximo Destino",
+        "period": "Em breve",
+        "location": "Horizontes Futuros da Cidade",
+        "description": "O próximo terminal ao longo da rota. Concluir as exigências finais da graduação, liderar iniciativas complexas de software e arquitetar produtos digitais de larga escala com impacto duradouro.",
+        "highlights": [
+          "Conclusão de Curso",
+          "Engenharia de Alto Impacto",
+          "Inovação",
+          "Software com Impacto Real"
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "logoAlt": "Logo Juan Cristo",
+    "description": "Projetado como um sistema de cidade pessoal onde módulos de software se interconectam como redes de transporte, avenidas e distritos urbanos sustentáveis.",
+    "navigationTitle": "Navegação da Cidade",
+    "navHero": "Terminal Central (Início)",
+    "navProjects": "Distrito de Projetos",
+    "navStack": "Parque de Tecnologias",
+    "navTimeline": "Mapa de Rotas (Linha do Tempo)",
+    "returnToTop": "Voltar ao Topo",
+    "rights": "Todos os direitos reservados.",
+    "poweredBy": "Desenvolvido com Bun, React & Tailwind CSS"
+  }
+}

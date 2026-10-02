@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Code2, Server, Database, Cpu } from "lucide-react";
 import stackData from "@/public/data/stack.json";
 
@@ -6,21 +7,22 @@ interface TechSkill {
   name: string;
   category: "frontend" | "backend" | "database" | "infra and ops";
   level: "Advanced" | "Proficient" | "Academic";
-  description: string;
+  description?: string;
   tags: string[];
 }
 
 const TECH_STACK = stackData as TechSkill[];
 
-const PARK_ZONES = [
-  { id: "frontend", label: "Frontend Playground", icon: Code2, count: 6 },
-  { id: "backend", label: "Backend Grove", icon: Server, count: 4 },
-  { id: "database", label: "Database Lake", icon: Database, count: 3 },
-  { id: "infra and ops", label: "Infra & DevOps Trail", icon: Cpu, count: 5 },
-] as const;
-
 export const StackParkSection: React.FC = () => {
+  const { t } = useTranslation();
   const [activeZone, setActiveZone] = useState<string>("frontend");
+
+  const parkZones = [
+    { id: "frontend", label: t("stack.zones.frontend"), icon: Code2, count: 6 },
+    { id: "backend", label: t("stack.zones.backend"), icon: Server, count: 4 },
+    { id: "database", label: t("stack.zones.database"), icon: Database, count: 3 },
+    { id: "infra and ops", label: t("stack.zones.infra"), icon: Cpu, count: 5 },
+  ] as const;
 
   const filteredSkills = TECH_STACK.filter(
     (skill) => skill.category === activeZone,
@@ -37,26 +39,23 @@ export const StackParkSection: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs text-slate-500 dark:text-zinc-400 font-heading uppercase tracking-wider font-semibold">
-                Station 3 • Green Zone
+                {t("stack.stationTag")}
               </span>
             </div>
 
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-blackbrown dark:text-lighttext">
-              Stack Park
+              {t("stack.title")}
             </h2>
 
             <p className="font-body text-slate-600 dark:text-zinc-300 text-base max-w-2xl mt-2 leading-relaxed">
-              Step into the city's open technology park. Just as trees and
-              gardens bring a breath of fresh air to the urban landscape, these
-              programming languages, frameworks, and foundations are essential
-              to my software creations.
+              {t("stack.subtitle")}
             </p>
           </div>
         </div>
 
         {/* Park Pavilions / Category Tabs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mb-10 pb-4 border-b border-slate-200 dark:border-zinc-800">
-          {PARK_ZONES.map((zone) => {
+          {parkZones.map((zone) => {
             const Icon = zone.icon;
             const isActive = activeZone === zone.id;
 
@@ -93,6 +92,9 @@ export const StackParkSection: React.FC = () => {
           {filteredSkills.map((tech) => {
             const isAcademic = tech.level === "Academic";
             const isAdvanced = tech.level === "Advanced";
+            const translatedLevel = t(`stack.levels.${tech.level}`, {
+              defaultValue: tech.level,
+            });
 
             return (
               <div
@@ -115,14 +117,16 @@ export const StackParkSection: React.FC = () => {
                             : "bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700"
                       }`}
                     >
-                      {tech.level}
+                      {translatedLevel}
                     </span>
                   </div>
 
                   {/* Description */}
-                  <p className="font-body text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed mb-4">
-                    {tech.description}
-                  </p>
+                  {tech.description ? (
+                    <p className="font-body text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed mb-4">
+                      {tech.description}
+                    </p>
+                  ) : null}
                 </div>
 
                 {/* Tags / Sub-skills */}

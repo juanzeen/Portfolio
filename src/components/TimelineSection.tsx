@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Calendar,
   MapPin,
@@ -16,13 +17,22 @@ interface TimelineStop {
   id: string;
   stopNumber: string;
   title: string;
-  category: "Education" | "Job" | "Life Milestone" | "Current Phase";
+  category: string;
   period: string;
   location: string;
   description: string;
   highlights: string[];
   status: "Completed" | "Current Stop" | "Upcoming";
   xPosition: number; // Horizontal coordinate along the track in px
+}
+
+interface TranslatedStopItem {
+  id: string;
+  title?: string;
+  period?: string;
+  location?: string;
+  description?: string;
+  highlights?: string[];
 }
 
 // Longer road coordinates:
@@ -36,10 +46,33 @@ const STOP_4_X = 3850; // Strict maximum for the bus!
 const STOP_5_X = 4750; // Milestone 5 horizon focus coordinate
 
 export const TimelineSection: React.FC = () => {
+  const { t } = useTranslation();
   const outerWrapperRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [viewportWidth, setViewportWidth] = useState<number>(1200);
+
+  const translatedStops = (t("timeline.stops", {
+    returnObjects: true,
+  }) || []) as TranslatedStopItem[];
+
+  const stops: TimelineStop[] = TIMELINE_STOPS.map((baseStop) => {
+    const trans = Array.isArray(translatedStops)
+      ? translatedStops.find((s) => s.id === baseStop.id)
+      : undefined;
+
+    return {
+      ...baseStop,
+      category: t(`timeline.categories.${baseStop.category}`, {
+        defaultValue: baseStop.category,
+      }),
+      title: trans?.title || baseStop.title,
+      period: trans?.period || baseStop.period,
+      location: trans?.location || baseStop.location,
+      description: trans?.description || baseStop.description,
+      highlights: trans?.highlights || baseStop.highlights,
+    };
+  });
 
   // Track window resize to compute proper horizontal translation
   useEffect(() => {
@@ -135,11 +168,11 @@ export const TimelineSection: React.FC = () => {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-xs text-slate-500 dark:text-zinc-400 font-heading uppercase tracking-wider font-semibold">
-                  Station 4 • Extended Expressway
+                  {t("timeline.stationTag")}
                 </span>
               </div>
               <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-inferno dark:text-cherry">
-                The Journey Bus
+                {t("timeline.title")}
               </h2>
             </div>
 
@@ -157,27 +190,29 @@ export const TimelineSection: React.FC = () => {
                 />
                 <span className="text-slate-600 dark:text-zinc-300 font-bold">
                   {isFocusAtStop5
-                    ? "HORIZON: STOP 05 (NEXT DESTINATION)"
+                    ? t("timeline.telemetry.horizon")
                     : isBusAtStop4
-                      ? "TERMINUS: STOP 04 (4/5 CS)"
+                      ? t("timeline.telemetry.terminus")
                       : currentBusX < 850
-                        ? "DEPARTING CENTRAL DEPOT"
-                        : `BUS JC-01: ${Math.round(busNormalized * 100)}%`}
+                        ? t("timeline.telemetry.departing")
+                        : t("timeline.telemetry.busProgress", {
+                            percent: Math.round(busNormalized * 100),
+                          })}
                 </span>
                 <span className="text-slate-300 dark:text-zinc-600">|</span>
                 <span className="text-cherry font-semibold">
                   {isFocusAtStop5
-                    ? "Future Horizons • Degree Completion Ahead"
+                    ? t("timeline.telemetry.horizonSub")
                     : isBusAtStop4
-                      ? "Bus Parked at 4/5 CS • Panning to Horizon"
+                      ? t("timeline.telemetry.terminusSub")
                       : currentBusX < 850
-                        ? "Approaching Stop 01"
-                        : "En Route to Station 4"}
+                        ? t("timeline.telemetry.departingSub")
+                        : t("timeline.telemetry.enRouteSub")}
                 </span>
               </div>
 
               <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800/80 px-3 py-1.5 rounded-md font-heading">
-                <span>Scroll down to drive bus</span>
+                <span>{t("timeline.scrollHint")}</span>
                 <ArrowRight className="w-3.5 h-3.5 animate-bounce" />
               </div>
             </div>
@@ -217,14 +252,14 @@ export const TimelineSection: React.FC = () => {
               <div className="bg-white dark:bg-blackbrown border-2 border-slate-300 dark:border-zinc-800 rounded-md shadow-md p-3.5 text-center w-full">
                 <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-inferno dark:text-cherry font-heading mb-1">
                   <Flag className="w-3.5 h-3.5 text-inferno dark:text-cherry" />
-                  <span>CENTRAL TRANSIT DEPOT</span>
+                  <span>{t("timeline.depot.title")}</span>
                 </div>
                 <p className="text-[11px] text-slate-500 dark:text-zinc-400 font-body">
-                  Bay 00 • Departure Point • Conceição de Macabu.
+                  {t("timeline.depot.bay")}
                 </p>
                 <div className="mt-2 inline-flex items-center gap-1 text-[10px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-sm border border-emerald-200 dark:border-emerald-800">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  Green Signal • Dispatched
+                  {t("timeline.depot.signal")}
                 </div>
               </div>
 
@@ -237,7 +272,7 @@ export const TimelineSection: React.FC = () => {
 
             {/* Milestone Cards Row */}
             <div className="relative h-72 md:h-77.5 w-full">
-              {TIMELINE_STOPS.map((stop, index) => {
+              {stops.map((stop, index) => {
                 const isStep5 = index === 4;
                 const isStep4 = index === 3;
 
@@ -380,11 +415,11 @@ export const TimelineSection: React.FC = () => {
                 className="absolute bottom-1 -translate-x-1/2 text-[9px] font-mono font-bold px-2 py-0.5 rounded-xs shadow-xs uppercase tracking-tight bg-inferno text-white pointer-events-none"
                 style={{ left: `${BUS_START_X}px` }}
               >
-                DEPOT 00 • START
+                {t("timeline.depot.tag")}
               </div>
 
               {/* Station Stop Platform Labels on Road */}
-              {TIMELINE_STOPS.map((stop) => (
+              {stops.map((stop) => (
                 <div
                   key={`platform-${stop.id}`}
                   className={`absolute bottom-1 -translate-x-1/2 text-[9px] font-mono font-bold px-2 py-0.5 rounded-xs shadow-xs uppercase tracking-tight pointer-events-none ${
@@ -401,12 +436,12 @@ export const TimelineSection: React.FC = () => {
                   }}
                 >
                   {stop.id === "stop-4"
-                    ? "TERMINUS 04"
+                    ? t("timeline.platformTerminus")
                     : stop.id === "stop-5"
                       ? isFocusAtStop5
-                        ? "HORIZON 05"
-                        : "FUTURE HORIZON 05"
-                      : `PLATFORM ${stop.stopNumber}`}
+                        ? t("timeline.platformHorizon")
+                        : t("timeline.platformFutureHorizon")
+                      : t("timeline.platformLabel", { number: stop.stopNumber })}
                 </div>
               ))}
 
@@ -426,7 +461,7 @@ export const TimelineSection: React.FC = () => {
                       textShadow: "0 1px 2px #000",
                     }}
                   >
-                    ROAD CLOSED
+                    {t("timeline.roadClosed")}
                   </div>
                   <div className="flex justify-between w-24">
                     <div className="w-2 h-4 bg-slate-400" />
@@ -655,7 +690,7 @@ export const TimelineSection: React.FC = () => {
                         fontFamily="var(--font-heading)"
                         fontWeight="bold"
                       >
-                        JC-01 • 4/5 CS
+                        {t("timeline.busPlate")}
                       </text>
                     </svg>
 
@@ -685,14 +720,14 @@ export const TimelineSection: React.FC = () => {
                   }`}
                 >
                   <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                  <span>Depot 00 (Start)</span>
+                  <span>{t("timeline.depot.crumb")}</span>
                 </div>
                 <span className="text-slate-300 dark:text-zinc-600 font-normal">
                   →
                 </span>
               </div>
 
-              {TIMELINE_STOPS.map((stop, i) => {
+              {stops.map((stop, i) => {
                 const isPassed = currentFocusX >= stop.xPosition - 30;
                 const isStep4 = i === 3;
                 const isStep5 = i === 4;
@@ -726,9 +761,9 @@ export const TimelineSection: React.FC = () => {
                       ) : (
                         <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-zinc-600" />
                       )}
-                      <span>Stop {stop.stopNumber}</span>
+                      <span>{t("timeline.stopCrumb", { number: stop.stopNumber })}</span>
                     </div>
-                    {i < TIMELINE_STOPS.length - 1 && (
+                    {i < stops.length - 1 && (
                       <span className="text-slate-300 dark:text-zinc-600 font-normal">
                         →
                       </span>
@@ -743,12 +778,12 @@ export const TimelineSection: React.FC = () => {
               <Bus className="w-4 h-4 text-inferno dark:text-cherry" />
               <span className="text-[11px]">
                 {isFocusAtStop5
-                  ? "Arrived at Milestone 05 horizon. Keep scrolling to continue to footer."
+                  ? t("timeline.bottomStatus.horizon")
                   : isBusAtStop4
-                    ? "Bus halted at 4/5 CS station. Viewing upcoming destination."
+                    ? t("timeline.bottomStatus.atStop4")
                     : currentBusX < 850
-                      ? "Bus departed Central Depot, driving toward Stop 01."
-                      : "Bus driving along route. Keep scrolling down."}
+                      ? t("timeline.bottomStatus.departing")
+                      : t("timeline.bottomStatus.driving")}
               </span>
             </div>
           </div>

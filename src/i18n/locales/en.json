@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "title": "Juan Cristo | Portfolio"
+  },
+  "loader": {
+    "label": "Departing for Juan Cristo's City..."
+  },
+  "nav": {
+    "centralStation": "Central Station",
+    "projectsDistrict": "Projects District",
+    "stackPark": "Stack Park",
+    "transitRouteMap": "Journey Bus",
+    "themeToggleDay": "Switch to Day Mode (Off-white)",
+    "themeToggleNight": "Switch to Night Mode (Black-Brown)",
+    "themeToggleAria": "Toggle dark mode",
+    "languageToggleAria": "Change language"
+  },
+  "hero": {
+    "stationTag": "Station 01 • Downtown Central Terminal",
+    "speedLimit": "City Transit Zone 1 • Speed Limit: 100 GFLOPS",
+    "residentCard": "TRANSIT RESIDENT CARD",
+    "cardId": "ID: JC-2005",
+    "avatarAlt": "Juan Cristo - Software Developer and Computer Scientist",
+    "cityLocation": "JCity",
+    "name": "Juan Cristo",
+    "role": "Software Developer",
+    "bio": "Welcome to my block! Just as a well-planned city relies on efficient transit lines, structured road systems, and resilient infrastructure, I build reliable, scalable software applications and performant systems.",
+    "statusLabel": "Status",
+    "statusValue": "Available",
+    "statusSubtext": "Ready for dispatch",
+    "btnProjects": "Projects District",
+    "btnStack": "Stack Park",
+    "btnTimeline": "Bus Timeline"
+  },
+  "projects": {
+    "stationTag": "Station 02 • Creative Area",
+    "title": "Projects District",
+    "subtitle": "Explore some of my latest projects and discover where I focus my efforts and skills. Each project was conceived as a fundamental building block of a city.",
+    "productionReady": "Production Ready",
+    "techStack": "Technology Stack",
+    "sourceCode": "Source Code",
+    "notOnGithub": "Project not registered in GitHub",
+    "liveInspection": "Live Inspection",
+    "internalSystem": "Internal System Core",
+    "items": [
+      {
+        "id": "proj-1",
+        "title": "NBA FANtastic",
+        "district": "Data & Sports District",
+        "stationCode": "STATION 01",
+        "description": "API providing selected NBA data on historical players, records, and active players. Currently implementing a prediction system.",
+        "status": "Active Route"
+      },
+      {
+        "id": "proj-2",
+        "title": "Radio UENF",
+        "district": "Music District",
+        "stationCode": "STATION 02",
+        "description": "Official website for Radio UENF, an extension and institutional from UENF",
+        "status": "Deploys Daily"
+      },
+      {
+        "id": "proj-3",
+        "title": "Eventos UENF",
+        "district": "Party Park",
+        "stationCode": "STATION 03",
+        "description": "Official website for Eventos UENF, created to centralize all university events inside UENF.",
+        "status": "Deploys Daily"
+      },
+      {
+        "id": "proj-4",
+        "title": "Cheap Tracker",
+        "district": "Transport & Logistic Sector",
+        "stationCode": "STATION 04",
+        "description": "Logistics and route optimization system whose primary objective is to find the most cost-effective and shortest path for a delivery route with multiple destinations.",
+        "status": "Research Lab"
+      },
+      {
+        "id": "proj-5",
+        "title": "Magical Lineup",
+        "district": "Sports Managing Neighborhood",
+        "stationCode": "STATION 05",
+        "description": "Line up creator for soccer enthusiasts, with share to social media options, multi-language support and offline-first mentality.",
+        "status": "Research Lab"
+      }
+    ]
+  },
+  "stack": {
+    "stationTag": "Station 3 • Green Zone",
+    "title": "Stack Park",
+    "subtitle": "Step into the city's open technology park. Just as trees and gardens bring a breath of fresh air to the urban landscape, these programming languages, frameworks, and foundations are essential to my software creations.",
+    "zones": {
+      "frontend": "Frontend Playground",
+      "backend": "Backend Grove",
+      "database": "Database Lake",
+      "infra": "Infra & DevOps Trail"
+    },
+    "levels": {
+      "Advanced": "Advanced",
+      "Proficient": "Proficient",
+      "Academic": "Academic"
+    }
+  },
+  "timeline": {
+    "stationTag": "Station 4 • Extended Expressway",
+    "title": "The Journey Bus",
+    "telemetry": {
+      "horizon": "HORIZON: STOP 05 (NEXT DESTINATION)",
+      "terminus": "TERMINUS: STOP 04 (4/5 CS)",
+      "departing": "DEPARTING CENTRAL DEPOT",
+      "busProgress": "BUS JC-01: {{percent}}%",
+      "horizonSub": "Future Horizons • Degree Completion Ahead",
+      "terminusSub": "Bus Parked at 4/5 CS • Panning to Horizon",
+      "departingSub": "Approaching Stop 01",
+      "enRouteSub": "En Route to Station 4"
+    },
+    "scrollHint": "Scroll down to drive bus",
+    "depot": {
+      "title": "CENTRAL TRANSIT DEPOT",
+      "bay": "Bay 00 • Departure Point • Conceição de Macabu.",
+      "signal": "Green Signal • Dispatched",
+      "tag": "DEPOT 00 • START",
+      "crumb": "Depot 00 (Start)"
+    },
+    "roadClosed": "ROAD CLOSED",
+    "busPlate": "JC-01 • 4/5 CS",
+    "platformLabel": "PLATFORM {{number}}",
+    "platformTerminus": "TERMINUS 04",
+    "platformHorizon": "HORIZON 05",
+    "platformFutureHorizon": "FUTURE HORIZON 05",
+    "stopCrumb": "Stop {{number}}",
+    "bottomStatus": {
+      "horizon": "Arrived at Milestone 05 horizon. Keep scrolling to continue to footer.",
+      "atStop4": "Bus halted at \"Actual Phase\". Viewing upcoming destination.",
+      "departing": "Bus departed Central Depot, driving toward Stop 01.",
+      "driving": "Bus driving along route. Keep scrolling down."
+    },
+    "categories": {
+      "Education": "Education",
+      "Job": "Job",
+      "Voluntary Job": "Voluntary Job",
+      "Life Milestone": "Life Milestone",
+      "Current Phase": "Current Phase",
+      "Education & Work": "Education & Work"
+    },
+    "stops": [
+      {
+        "id": "stop-1",
+        "title": "Initial Departure: I.T Technician",
+        "period": "2020 — 2023",
+        "location": "IFF Quissamã",
+        "description": "Boarded the I.T journey. Discovered logic programming, script automation, and the excitement of building web pages from scratch.",
+        "highlights": [
+          "HTML & CSS",
+          "JavaScript Basics",
+          "Express",
+          "Problem Solving",
+          "Logic"
+        ]
+      },
+      {
+        "id": "stop-2",
+        "title": "University Station: Computer Science",
+        "period": "2023",
+        "location": "State University of Northern Rio de Janeiro - UENF",
+        "description": "Arrived at the Computer Science campus. Immersed in data structures, algorithms, discrete mathematics, and software design principles.",
+        "highlights": [
+          "Data Structures",
+          "Algorithms",
+          "OOP",
+          "Graphs Theory",
+          "Database Systems",
+          "C",
+          "Git Workflows"
+        ]
+      },
+      {
+        "id": "stop-3",
+        "title": "First Developer Role",
+        "period": "2023",
+        "location": "Pescarte & SoulCode Jr.",
+        "description": "Stepped into real-world software engineering as a volunteer. Collaborated with engineering teams to build, test, and ship production web applications and resilient API endpoints.",
+        "highlights": [
+          "Full-Stack Development",
+          "Elixir & Phoenix",
+          "React & TypeScript",
+          "RESTful",
+          "GitHub Actions",
+          "Docker"
+        ]
+      },
+      {
+        "id": "stop-4",
+        "title": "Extension Fellow Developer",
+        "period": "2024 — Present",
+        "location": "ASCOM - UENF",
+        "description": "4/5 Computer Scientist. I currently maintain institutional websites, such as radio.uenf.br and eventos.uenf.br, and also develop internal solutions, such as the ASCOM request system.",
+        "highlights": [
+          "PHP & WordPress",
+          "Python",
+          "FastAPI & Django",
+          "Distributed Systems",
+          "System Architecture"
+        ]
+      },
+      {
+        "id": "stop-5",
+        "title": "Next Destination",
+        "period": "Upcoming",
+        "location": "Future City Horizons",
+        "description": "The next terminal along the route. Completing final degree requirements, driving complex software initiatives, and engineering large-scale digital products with long-lasting impact.",
+        "highlights": [
+          "Degree Completion",
+          "High-Impact Engineering",
+          "Innovation",
+          "Life-Changing Software"
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "logoAlt": "Juan Cristo Logo",
+    "description": "Designed as a personal city system where software modules interconnect like transit networks, avenues, and sustainable urban districts.",
+    "navigationTitle": "City Navigation",
+    "navHero": "Central Terminal (Hero)",
+    "navProjects": "Projects District",
+    "navStack": "Stack Park",
+    "navTimeline": "Transit Route Map (Timeline)",
+    "returnToTop": "Return to Top",
+    "rights": "All rights reserved.",
+    "poweredBy": "Powered by Bun, React & Tailwind CSS"
+  }
+}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
@@ -6,9 +7,11 @@ import { StackParkSection } from "@/components/StackParkSection";
 import { TimelineSection } from "@/components/TimelineSection";
 import { Footer } from "@/components/Footer";
 import { MovingBusLoader } from "@/components/ui/moving-bus-loader";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 function App() {
   const [initialLoading, setInitialLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,7 +25,7 @@ function App() {
     return (
       <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-offwhite dark:bg-blackbrown transition-colors duration-200">
         <MovingBusLoader
-          label="Departing for Juan Cristo's City..."
+          label={t("loader.label")}
           size="lg"
         />
       </div>
@@ -39,6 +42,7 @@ function App() {
         <TimelineSection />
       </main>
       <Footer />
+      <LanguageSwitcher />
     </div>
   );
 }

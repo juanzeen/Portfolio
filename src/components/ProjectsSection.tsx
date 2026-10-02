@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ExternalLink, MapPin, Terminal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import projectsData from "@/public/data/projects.json";
@@ -11,14 +12,44 @@ interface ProjectItem {
   description: string;
   thumbnail: string;
   tags: string[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   status: string;
+}
+
+interface TranslatedProjectItem {
+  id: string;
+  title?: string;
+  district?: string;
+  stationCode?: string;
+  description?: string;
+  status?: string;
 }
 
 const SAMPLE_PROJECTS = projectsData as ProjectItem[];
 
 export const ProjectsSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const translatedItems = (t("projects.items", {
+    returnObjects: true,
+  }) || []) as TranslatedProjectItem[];
+
+  const projects: ProjectItem[] = SAMPLE_PROJECTS.map((project) => {
+    const translation = Array.isArray(translatedItems)
+      ? translatedItems.find((item) => item.id === project.id)
+      : undefined;
+
+    return {
+      ...project,
+      title: translation?.title || project.title,
+      district: translation?.district || project.district,
+      stationCode: translation?.stationCode || project.stationCode,
+      description: translation?.description || project.description,
+      status: translation?.status || project.status,
+    };
+  });
+
   return (
     <section
       id="projects"
@@ -30,23 +61,21 @@ export const ProjectsSection: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs text-slate-500 dark:text-zinc-400 font-heading uppercase tracking-wider font-semibold">
-                Station 02 • Creative Area
+                {t("projects.stationTag")}
               </span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-inferno dark:text-cherry">
-              Projects District
+              {t("projects.title")}
             </h2>
             <p className="font-body text-slate-600 dark:text-zinc-300 text-base max-w-2xl mt-2">
-              Explore some of my latest projects and discover where I focus my
-              efforts and skills. Each project was conceived as a fundamental
-              building block of a city.
+              {t("projects.subtitle")}
             </p>
           </div>
         </div>
 
         {/* Projects List - Wide lines (80% or full width) with Image on one side and Info on the other */}
         <div className="space-y-10 md:space-y-12">
-          {SAMPLE_PROJECTS.map((project, index) => {
+          {projects.map((project, index) => {
             const isEven = index % 2 === 0;
             return (
               <div
@@ -86,7 +115,7 @@ export const ProjectsSection: React.FC = () => {
                       {project.liveUrl && (
                         <span className="text-[11px] text-slate-400 dark:text-zinc-500 font-heading font-medium flex items-center gap-1">
                           <Terminal className="w-3 h-3 text-cherry" />
-                          Production Ready
+                          {t("projects.productionReady")}
                         </span>
                       )}
                     </div>
@@ -104,7 +133,7 @@ export const ProjectsSection: React.FC = () => {
                     {/* Tech Stack */}
                     <div className="mb-6">
                       <p className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-zinc-400 font-heading mb-2.5">
-                        Technology Stack
+                        {t("projects.techStack")}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
@@ -135,11 +164,11 @@ export const ProjectsSection: React.FC = () => {
                         >
                           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                         </svg>
-                        <span>Source Code</span>
+                        <span>{t("projects.sourceCode")}</span>
                       </a>
                     ) : (
                       <span className="text-xs text-slate-400 dark:text-zinc-500 font-heading italic">
-                        Project not registered in GitHub
+                        {t("projects.notOnGithub")}
                       </span>
                     )}
 
@@ -150,12 +179,12 @@ export const ProjectsSection: React.FC = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 text-sm font-bold text-inferno dark:text-cherry hover:text-cherry dark:hover:text-cherry-hover transition-colors font-heading"
                       >
-                        <span>Live Inspection</span>
+                        <span>{t("projects.liveInspection")}</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     ) : (
                       <span className="text-xs text-slate-400 dark:text-zinc-500 font-heading italic">
-                        Internal System Core
+                        {t("projects.internalSystem")}
                       </span>
                     )}
                   </div>
